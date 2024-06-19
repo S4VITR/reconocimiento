@@ -8,23 +8,37 @@ import java.util.Map;
 import java.util.UUID;
 
 public class DataType {
-    
-    //? Método para obtener la fecha actual
+
+    /**
+     * * Devuelve la fecha actual como un objeto de tipo `Date`. Este método obtiene la fecha actual utilizando la clase `LocalDate` y la convierte a un objeto de tipo `Date`.
+     * 
+     * @return La fecha actual como un objeto `Date`.
+     */
     public static Date devolverFechaActual() {
         LocalDate fechaActual = LocalDate.now();
-        //String fecha = fechaActual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    
         return Date.valueOf(fechaActual);
     }
-    //? Método para obtener la hora actual
+    
+    /**
+     * * Devuelve la hora actual como un objeto de tipo `Time`. Este método obtiene la hora actual utilizando la clase `LocalTime` y la convierte a un objeto de tipo `Time`.
+     * 
+     * @return La hora actual como un objeto `Time`.
+     */
     public static Time devolverHoraActual() {
         LocalTime horaActual = LocalTime.now();
-        //String hora = horaActual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        
         return Time.valueOf(horaActual);
     }
-    //? Método para generar un ID Dinamico para cada registro
+    
+    /**
+     * * Genera y devuelve un UUID (Universally Unique Identifier) en forma de cadena. Este método utiliza la clase `UUID` para generar un identificador único aleatorio y lo devuelve como una cadena.
+     * 
+     * @return Un UUID único en formato de cadena.
+     */
     public static String getUUID() {
         UUID uuid = UUID.randomUUID();
-        //String uuidString = uuid.toString();
+   
         return uuid.toString();
     }
     //? Método para devolver el dia de la semana
@@ -39,7 +53,6 @@ public class DataType {
         dia_semana.put("WEDNESDAY", "Miercoles");
         dia_semana.put("THURSDAY", "Jueves");
         dia_semana.put("FRIDAY", "Viernes");
-        dia_semana.put("SATURDAY", "Sabado");
 
         String dia_hoy = dia_semana.get(nombre_dia);
 
