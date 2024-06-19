@@ -1,0 +1,7 @@
+{
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "docwriter.style": "Auto-detect",
+  "docwriter.progress.trackClasses": true,
+  "docwriter.progress.trackTypes": true,
+  "docwriter.language": "English"
+}
