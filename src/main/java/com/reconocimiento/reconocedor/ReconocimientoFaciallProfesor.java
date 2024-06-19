@@ -41,11 +41,8 @@ import com.reconocimiento.model.controlador.ControladorAsistencias;
  * */
 public class ReconocimientoFaciallProfesor {
 
-    //? Obtener la fecha actual
     private final Date fecha = devolverFechaActual();
-    //? Obtener la hora actual
     private final Time hora = devolverHoraActual();
-    //? Variable para guardar el ID que se proporcione durante el reconocimiento facial
     private int id_Empleado;
 
     /**
