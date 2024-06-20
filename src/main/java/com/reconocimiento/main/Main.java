@@ -3,6 +3,7 @@ package com.reconocimiento.main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.SQLException;
 
 import com.reconocimiento.components.inicio.TablaProfesores;
 import com.reconocimiento.components.materias.TablaMaterias;
@@ -18,7 +19,7 @@ import static com.reconocimiento.components.menu.Menu.*;
 
 public class Main extends JFrame {
 
-    public Main()throws Exception {
+    public Main() throws Exception {
         this.setLayout(null);
         this.getContentPane().setBackground(new Color(202, 207, 210));
         this.getContentPane().add(new Menu());
@@ -39,7 +40,7 @@ public class Main extends JFrame {
         settingsFrame();
         new Camara().iniciarCamara();
     }
-    private void addComponents() {
+    private void addComponents() throws SQLException, Exception {
         Dashboard panelDash = new Dashboard();
         panelDash.setVisible(true);
         Profesores panelData = new Profesores();
@@ -92,7 +93,7 @@ public class Main extends JFrame {
         exit.addActionListener(e -> System.exit(0));
     }
     public static class Dashboard extends JPanel {
-        public Dashboard() {
+        public Dashboard() throws SQLException, Exception {
             this.setLayout(null);
 
             this.setBounds(210, 10, 980, 680);

@@ -1,10 +1,6 @@
 package com.reconocimiento.components.asistencia;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.reconocimiento.database.Conexion.conexion;
 
 import javax.swing.event.DocumentListener;
 
@@ -28,7 +24,9 @@ public class TablaAsistenciaProfesores extends JPanel {
     private JTextField textField;
     private JLabel title;
 
-    public TablaAsistenciaProfesores() {
+    private final ControladorTablaAsistenciaProfesores controlador = new ControladorTablaAsistenciaProfesores();
+
+    public TablaAsistenciaProfesores() throws SQLException, Exception {
         this.setLayout(null);
         this.setBackground(new Color(255, 255, 255));
 
@@ -47,23 +45,17 @@ public class TablaAsistenciaProfesores extends JPanel {
         textField.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 14));
         textField.setBounds(795, 20, 150, 30);
 
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-            UIManager.put("nimbusBase", new Color(255, 255, 255));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        UIManager.put("nimbusBase", new Color(255, 255, 255));
+       
 
         //!Inicializar el método devolverDatosDelHorario() para la inserción de inasistencia
-        try {
-            new ReconocimientoFaciallProfesor().devolverDatosDelHorario();   
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        new ReconocimientoFaciallProfesor().devolverDatosDelHorario();   
+
 
         String[] columnas = {"ID del Profesor", "Fecha de Registro", "Hora de Entrada", "Hora de Salida", "Asistencia"};
-        abstractTable = new AbstractTable(buscadorDeAsistencia(""), columnas);
-
+        abstractTable = new AbstractTable(controlador.buscadorDeAsistencias(""), columnas);
+    
         getDocumentListener();
 
         scrollPane = getPane(abstractTable, 930, 230);
@@ -87,19 +79,31 @@ public class TablaAsistenciaProfesores extends JPanel {
         textField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                updateTable();
+                try {
+                    updateTable();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
-                updateTable();
+                try {
+                    updateTable();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
-                updateTable();
+                try {
+                    updateTable();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
-            private void updateTable() {
+            private void updateTable() throws SQLException {
                 String filter = textField.getText();
-                List<String[]> data = buscadorDeAsistencia(filter);
+                List<String[]> data = controlador.buscadorDeAsistencias(filter);
 
                 abstractTable.setData(data);
             }
@@ -120,68 +124,17 @@ public class TablaAsistenciaProfesores extends JPanel {
                     textField.setForeground(new Color(128, 128, 128));
                     textField.setText("Search...");
 
-                    List<String[]> data = devolverDatosAsistencia();
-                    abstractTable.setData(data);
+                    List<String[]> data;
+                    try {
+                        data = controlador.mostrarDatosAsistencias();
+                        abstractTable.setData(data);
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         });
 
         return textField;
-    }
-    private static List<String[]> buscadorDeAsistencia(String filter) {
-
-        String sql = "SELECT id_Profesor, fecha_registro, hora_entrada, hora_salida, asistencia FROM asistencias_profesores WHERE id_Profesor LIKE? OR fecha_registro LIKE? OR asistencia LIKE?";
-        
-        ResultSet resultSet;
-        List<String[]> data = new ArrayList<>();
-
-        try (PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
-            preparedStatement.setString(1, "%" + filter + "%");
-            preparedStatement.setString(2, "%" + filter + "%");
-            preparedStatement.setString(3, "%" + filter + "%");
-            
-            resultSet = preparedStatement.executeQuery();
-
-
-            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-            int cantidadColumnas = resultSetMetaData.getColumnCount();
-
-            while (resultSet.next()) {
-                String[] fila = new String[cantidadColumnas];
-                for (int i = 1; i <= cantidadColumnas; i++) {
-                    fila[i - 1] = resultSet.getString(i);
-                }
-                data.add(fila);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return data;
-    }
-    private static List<String[]> devolverDatosAsistencia() {
-
-        String sql = "SELECT id_Profesor, fecha_registro, hora_entrada, hora_salida, asistencia FROM asistencias_profesores";
-        
-        ResultSet resultSet;
-        List<String[]> data = new ArrayList<>();
-
-        try (PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
-            resultSet = preparedStatement.executeQuery();
-
-            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-            int cantidadColumnas = resultSetMetaData.getColumnCount();
-
-            while (resultSet.next()) {
-                String[] fila = new String[cantidadColumnas];
-                for (int i = 1; i <= cantidadColumnas; i++) {
-                    fila[i - 1] = resultSet.getString(i);
-                }
-                data.add(fila);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return data;
     }
 }
