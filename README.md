@@ -33,20 +33,18 @@ Una guía paso a paso sobre cómo configurar el entorno de desarrollo e instalar
 Explica qué tecnologías usaste para construir este proyecto. Aquí algunos ejemplos:
 
 - [Java](https://www.java.com) - El lenguaje utilizado
-- [JDK Development Kit 22.0.1](https://www.oracle.com/mx/java/technologies/downloads/)
+- [JDK Development Kit 22.0.1](https://www.oracle.com/mx/java/technologies/downloads/) - Herramienta de desarrollo para la creación de programas
 - [Apache Maven](https://maven.apache.org/index.html) - Gestión y construcción de proyectos
 - [MySQL](https://www.mysql.com) - Sistema de base de datos
 
 ## Soporte
 
-Si tienes algún problema o sugerencia, por favor abre un problema [aquí](https://github.com/your/project/issues).
+Si tienes algún problema o sugerencia, por favor abre un problema [aquí](https://github.com/S4VITR/reconocimiento/issues).
 
 ## Roadmap
 
-Ideas, mejoras planificadas y actualizaciones futuras
-
-para el proyecto actual.
+Ideas, mejoras planificadas y actualizaciones futuras para el proyecto actual.
 
 ## Autores ✒️
 
-- **Brayan Diaz C** - _Trabajo inicial_ - [Brayan Diaz C](https://github.com/brayandiazc)
+- **Eduardo Gómez** - _Trabajo inicial_ - [Eduardo Gómez](https://github.com/S4VITR)
