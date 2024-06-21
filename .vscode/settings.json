@@ -3,5 +3,6 @@
   "docwriter.style": "Auto-detect",
   "docwriter.progress.trackClasses": true,
   "docwriter.progress.trackTypes": true,
-  "docwriter.language": "English"
+  "docwriter.language": "English",
+  "java.debug.settings.onBuildFailureProceed": true
 }

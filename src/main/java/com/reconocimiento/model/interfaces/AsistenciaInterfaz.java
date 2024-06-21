@@ -1,4 +1,4 @@
-package com.reconocimiento.interfaces;
+package com.reconocimiento.model.interfaces;
 
 import java.sql.*;
 import java.util.*;

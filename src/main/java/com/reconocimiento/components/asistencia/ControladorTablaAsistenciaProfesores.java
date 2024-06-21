@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.reconocimiento.interfaces.AdaptadorAsistencias;
+import com.reconocimiento.model.interfaces.AdaptadorAsistencias;
 
 import static com.reconocimiento.database.Conexion.conexion;
 

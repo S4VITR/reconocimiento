@@ -1,11 +1,11 @@
-package com.reconocimiento.interfaces;
+package com.reconocimiento.model.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;
 
 /**
  * * La clase AdaptadorAsistencias implementa la interfaz AsistenciaInterfaz.
- * {@link com.reconocimiento.interfaces#AsistenciaInterfaz}
+ * {@link com.reconocimiento.model.interfaces#AsistenciaInterfaz}
  * 
  * @author Eduardo Gómez
  */

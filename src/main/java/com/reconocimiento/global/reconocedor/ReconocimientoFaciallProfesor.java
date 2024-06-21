@@ -33,8 +33,8 @@ import org.bytedeco.opencv.opencv_core.Size;
 import org.bytedeco.opencv.opencv_face.LBPHFaceRecognizer;
 import org.bytedeco.opencv.opencv_objdetect.CascadeClassifier;
 
-import com.reconocimiento.controller.ControladorAsistencias;
 import com.reconocimiento.model.asistencia_profesor.AsistenciasProfesoresModel;
+import com.reconocimiento.model.controller.ControladorAsistencias;
 
 /**
  * @author Eduardo Gómez 

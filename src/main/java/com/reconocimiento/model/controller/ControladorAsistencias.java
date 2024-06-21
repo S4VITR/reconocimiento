@@ -1,17 +1,17 @@
-package com.reconocimiento.controller;
+package com.reconocimiento.model.controller;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.reconocimiento.interfaces.AdaptadorAsistencias;
 import com.reconocimiento.model.asistencia_alumno.AsistenciaAlumnoModel;
 import com.reconocimiento.model.asistencia_profesor.AsistenciasProfesoresModel;
+import com.reconocimiento.model.interfaces.AdaptadorAsistencias;
 
 import static com.reconocimiento.database.Conexion.conexion;
 
 /**
  * * La clase ControladorAsistencias extiende de la Clase AdaptadorAsistencias
- * {@link com.reconocimiento.interfaces#AdaptadorAsistencias}
+ * {@link com.reconocimiento.model.interfaces#AdaptadorAsistencias}
  * 
  * @author Eduardo Gómez
  */
