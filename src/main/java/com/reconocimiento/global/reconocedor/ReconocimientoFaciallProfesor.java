@@ -166,11 +166,11 @@ public class ReconocimientoFaciallProfesor {
     }
     
     /**
-     * * Método que genera una consulta y procesa los datos del horario de profesores para el día de la semana actual. Si un profesor no tiene un registro de asistencia para el día actual, se registra como inasistencia.
+     * * Este método genera una consulta y procesa los datos del horario de profesores para el día de la semana actual. Si un profesor no tiene un registro de asistencia para el día actual, se registra como inasistencia.
      * 
      * @throws SQLException si ocurre un error durante la ejecución de la consulta SQL.
      */
-    public void devolverDatosDelHorario() throws SQLException {
+    public void devolverDatosDelHorario() {
 
         String sql = "SELECT * FROM horario_profesores WHERE dia_semana = ?";
         ResultSet resultSet;
@@ -187,8 +187,11 @@ public class ReconocimientoFaciallProfesor {
 
                 if (!existenciaDelRegistro(profesor_id)) {
                     insertarInasistenciaDelProfesor(profesor_id);
+                    System.out.println("Se inserto el registro de inasistencia");
                 }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
     

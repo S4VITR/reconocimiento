@@ -20,9 +20,7 @@ public class ControladorAsistencias extends AdaptadorAsistencias {
     /**
      * * El método 'insertarInasistenciaEntrada' inserta registros de asistencia de profesores o estudiantes en sus respectivas tablas de bases de datos según el tipo de objeto pasado.
      * 
-     * @param object El parámetro 'object' en el método 'insertarInasistenciaEntrada' es un tipo genérico '<T>''. Se
-     *               utiliza para recibir un objeto de cualquier tipo y luego, según el tipo de objeto, el método
-     *               realiza la inserción de registros de asistencia para profesores o estudiantes.
+     * @param object El parámetro 'object' en el método 'insertarInasistenciaEntrada' es un tipo genérico '<T>'. Se utiliza para recibir un objeto de cualquier tipo y luego, según el tipo de objeto, el método realiza la inserción de registros de asistencia para profesores o estudiantes.
      * @throws SQLException Devuelve una excepción durante la inserción de registros en la base de datos.
      */
     @Override
@@ -60,10 +58,9 @@ public class ControladorAsistencias extends AdaptadorAsistencias {
     }
 
     /**
-     * * La función 'actualizarAsistenciaEntrada' actualiza la entrada de asistencia de un profesor o un estudiante en la base de datos según el tipo de objeto proporcionado.
+     * * La método 'actualizarAsistenciaEntrada' actualiza la entrada de asistencia de un profesor o un estudiante en la base de datos según el tipo de objeto proporcionado.
      * 
-     * @param object El método 'actualizarAsistenciaEntrada' es un método genérico que actualiza la entrada de
-     *               asistencia de un profesor o de un estudiante según el tipo de objeto que se le pasa.
+     * @param object El método 'actualizarAsistenciaEntrada' es un método genérico que actualiza la entrada de asistencia de un profesor o de un estudiante según el tipo de objeto que se le pasa.
      * @throws SQLException Devuelve una excepción durante la actualización de registros en la base de datos.
      */
     @Override
@@ -99,10 +96,9 @@ public class ControladorAsistencias extends AdaptadorAsistencias {
     }
 
     /**
-     * * La función 'actualizarAsistenciaSalida' actualiza la salida de asistencia de un profesor o un estudiante en la base de datos según el tipo de objeto proporcionado.
+     * * El método'actualizarAsistenciaSalida' actualiza la salida de asistencia de un profesor o un estudiante en la base de datos según el tipo de objeto proporcionado.
      * 
-     * @param object El método 'actualizarAsistenciaSalida' es un método genérico que actualiza la salida de
-     *               asistencia de un profesor o de un estudiante según el tipo de objeto que se le pasa.
+     * @param object El método 'actualizarAsistenciaSalida' es un método genérico que actualiza la salida de asistencia de un profesor o de un estudiante según el tipo de objeto que se le pasa.
      * @throws SQLException Devuelve una excepción durante la actualización de registros en la base de datos.
      */
     @Override

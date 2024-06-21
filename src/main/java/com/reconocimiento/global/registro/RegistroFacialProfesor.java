@@ -18,11 +18,17 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.sql.*;
 
+/**
+ * @author Eduardo Gómez
+ */
 public class RegistroFacialProfesor {
 
     private int fotosTomadas = 1;
     private boolean espera = false;
-
+    
+    /**
+     * * Realiza el registro facial de un profesor mediante la captura de imágenes faciales. Este método captura imágenes faciales de un profesor y las guarda en un directorio especificado. Una vez que se capturan 26 imágenes, se llama a los métodos para insertar datos, entrenar el reconocedor facial y activar un temporizador.
+     */
     public void registroFacialProfesor() {
 
         Mat frame = new Mat();
@@ -78,9 +84,9 @@ public class RegistroFacialProfesor {
             }
         }
     }
-    public void cerrarCamara() {
-        capturaDeVideo.close();
-    }
+    /**
+     * * Inserta los datos de un profesor en la base de datos. Este método crea una instancia de `ProfesorModel`, establece sus campos con los valores de los campos de texto correspondientes, y utiliza `ProfesorController` para insertar el registro del profesor en la base de datos.
+     */
     private void insertarDatos() {
 
         ProfesorModel profesorModel = new ProfesorModel();
@@ -91,7 +97,14 @@ public class RegistroFacialProfesor {
 
         new ProfesorController().insertarProfesor(profesorModel);
     }
-    //Método para devolver ordenadamente el ID de manera descendete en la tabla
+    
+    /**
+     * * Obtiene el ID del próximo pedido para un empleado Este método recupera el ID del empleado más reciente de la tabla `profesores`, lo incrementa en 1, y lo establece en el campo de texto `id_ProfesorField`. Luego, devuelve el nuevo ID de empleado.
+     * 
+     * @return el próximo ID de empleado.
+     * @throws NumberFormatException si ocurre un error al convertir el ID a un entero.
+     * @throws SQLException si ocurre un error al ejecutar la consulta SQL.
+     */
     public int getOrderId() throws NumberFormatException, SQLException {
 
         int id_Empleado = 0;
@@ -111,6 +124,10 @@ public class RegistroFacialProfesor {
         
         return id_Empleado;
     }
+
+    /**
+     * * Inicia un temporizador de espera de 3 segundos. Este método establece la variable `espera` en `true` y crea un nuevo hilo que espera 3 segundos antes de establecer `espera` en `false`. Esto es útil para introducir un retraso después de un evento de reconocimiento facial.
+     */
     private void standTimer() {
         
         espera = true;

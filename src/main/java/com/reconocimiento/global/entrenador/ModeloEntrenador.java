@@ -14,8 +14,16 @@ import static org.bytedeco.opencv.global.opencv_core.CV_32SC1;
 import static org.bytedeco.opencv.global.opencv_imgcodecs.imread;
 import static org.bytedeco.opencv.global.opencv_imgproc.COLOR_BGRA2GRAY;
 
+/** 
+ * @author Eduardo Gómez
+*/
 public class ModeloEntrenador {
 
+    /**
+     * * Entrena el reconocedor facial usando imágenes almacenadas. Este método escanea un directorio específico en busca de archivos de imagen con las extensiones `.jpg` o `.png`. Luego, utiliza estas imágenes para entrenar un reconocedor facial LBPH y guarda el modelo entrenado en un archivo.
+     * 
+     * @throws RuntimeException si no se encuentran archivos de imagen en el directorio especificado.
+     */
     public static void entrenadorFacial() {
         File directorio = new File("src\\main\\java\\com\\reconocimiento\\resource\\image\\");
 
