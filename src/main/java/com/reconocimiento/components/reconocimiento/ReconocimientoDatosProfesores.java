@@ -1,9 +1,9 @@
 package com.reconocimiento.components.reconocimiento;
 
+import static com.reconocimiento.template.custom.CustomComponents.*;
+
 import java.awt.*;
 import javax.swing.*;
-
-import static com.reconocimiento.modules.custom.CustomComponents.*;
 
 public class ReconocimientoDatosProfesores extends JPanel {
 

@@ -4,8 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.reconocimiento.interfaces.AdaptadorAsistencias;
+
 import static com.reconocimiento.database.Conexion.conexion;
-import com.reconocimiento.model.interfaces.AdaptadorAsistencias;
 
 /**
  *  * Clase `ControladorTablaAsistenciaProfesores` que extiende de `AdaptadorAsistencias`.

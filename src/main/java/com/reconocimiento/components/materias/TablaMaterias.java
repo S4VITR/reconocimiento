@@ -2,12 +2,12 @@ package com.reconocimiento.components.materias;
 
 import com.reconocimiento.model.asistencia_profesor.AsistenciasProfesoresModel;
 import com.reconocimiento.model.materias.MateriaController;
-import com.reconocimiento.modules.custom.AbstractTable;
+import com.reconocimiento.template.custom.AbstractTable;
 
 import javax.swing.*;
 
-import static com.reconocimiento.modules.custom.CustomTable.*;
 import static com.reconocimiento.database.Conexion.conexion;
+import static com.reconocimiento.template.custom.CustomTable.*;
 
 import java.awt.*;
 import java.sql.*;

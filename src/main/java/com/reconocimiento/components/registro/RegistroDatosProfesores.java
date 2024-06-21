@@ -1,9 +1,10 @@
 package com.reconocimiento.components.registro;
 
 import javax.swing.*;
-import java.awt.*;
 
-import static com.reconocimiento.modules.custom.CustomComponents.*;
+import static com.reconocimiento.template.custom.CustomComponents.*;
+
+import java.awt.*;
 
 public class RegistroDatosProfesores extends JPanel {
 

@@ -4,18 +4,17 @@ import java.util.List;
 
 import javax.swing.event.DocumentListener;
 
-import com.reconocimiento.modules.custom.AbstractTable;
+import com.reconocimiento.template.custom.AbstractTable;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
-
-import static com.reconocimiento.modules.custom.CustomTable.*;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import static com.reconocimiento.model.profesor.ProfesorController.*;
+import static com.reconocimiento.template.custom.CustomTable.*;
 
 public class TablaProfesores extends JPanel {
 

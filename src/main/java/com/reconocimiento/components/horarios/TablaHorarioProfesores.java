@@ -1,6 +1,7 @@
 package com.reconocimiento.components.horarios;
 
 import static com.reconocimiento.database.Conexion.conexion;
+import static com.reconocimiento.template.custom.CustomTable.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,12 +9,10 @@ import java.util.List;
 
 import javax.swing.event.DocumentListener;
 
-import com.reconocimiento.modules.custom.AbstractTable;
+import com.reconocimiento.template.custom.AbstractTable;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
-
-import static com.reconocimiento.modules.custom.CustomTable.*;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
