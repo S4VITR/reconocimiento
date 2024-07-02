@@ -45,24 +45,31 @@ public class ReconocimientoFacialProfesor {
     private final Time hora = devolverHoraActual();
     private int id_Empleado;
 
+    private Mat frame;
+    private Mat grayFrame;
+    private Rect capture;
+    private Scalar color;
+    private Set<Integer> dataInsert;
+
+
     /**
-     * * Realiza el reconocimiento facial de empleados utilizando un clasificador Haar y un reconocedor LBPH.
+     * * Realiza el reconocimiento facial de empleados en tiempo real. Captura video, detecta rostros y reconoce empleados usando un modelo entrenado LBPH.
      * 
-     * @throws Exception si ocurre un error durante el proceso de reconocimiento facial.
+     * @throws Exception Si ocurre algún error durante el proceso.
      */
     public void reconocimientoFacialEmpleado() throws Exception {
 
-        Mat frame = new Mat();
-        Mat grayFrame = new Mat();
+        frame = new Mat();
+        grayFrame = new Mat();
         RectVector rostrosDetectados = new RectVector();
         CascadeClassifier clasificador = new CascadeClassifier("src\\main\\java\\com\\reconocimiento\\resource\\lib\\haarcascade_frontalface_alt.xml");
-        Rect capture = new Rect(150, 80, 300, 350);
+        capture = new Rect(150, 80, 300, 350);
 
         LBPHFaceRecognizer recognizer = LBPHFaceRecognizer.create();
         recognizer.read("src\\main\\java\\com\\reconocimiento\\resource\\module\\train_LBPHrecognizer.yml");
         recognizer.setThreshold(80);
 
-        Set<Integer> dataInsert = new HashSet<>();
+        dataInsert = new HashSet<>();
         boolean espera = false;
 
         while (capturaDeVideo.read(frame)) {
@@ -73,40 +80,10 @@ public class ReconocimientoFacialProfesor {
 
             if (!frame.empty()) {
                 clasificador.detectMultiScale(grayFrame, rostrosDetectados, 1.1, 2, 0, new Size(150, 150), new Size(400, 400));
-                Scalar color = new Scalar(255, 0, 0, 0);
+                color = new Scalar(255, 0, 0, 0);
 
-                for (int i = 0; i < rostrosDetectados.size(); i++) {
-                    Rect rect = rostrosDetectados.get(i);
+                deteccionDeRostros(rostrosDetectados, recognizer);
 
-                    if (capture.contains(new Point(rect.x() + rect.width() / 2, rect.y() + rect.height() / 2))) {
-                        color = new Scalar(0, 255, 0, 0);
-
-                        opencv_imgproc.rectangle(frame, rect, new Scalar(0, 255, 0, 3), 3, 0, 0);
-                        Mat faceROI = new Mat(grayFrame, rect);
-                        opencv_imgproc.resize(faceROI, faceROI, new Size(160, 160));
-
-                        IntPointer pointer = new IntPointer(1);
-                        DoublePointer confidence = new DoublePointer(1);
-                        recognizer.predict(faceROI, pointer, confidence);
-                        int predictedLabel = pointer.get(0);
-
-                        if (predictedLabel == -1) {
-                            opencv_imgproc.rectangle(frame, rect, new Scalar(0, 0, 255, 3), 3, 0, 0);
-                            id_Empleado = 0;
-                            id_ProfesorJLabel.setText("");
-                            name_ProfesorJLabel.setText("Desconocido");
-                        } else {
-                            opencv_imgproc.rectangle(frame, rect, new Scalar(0, 255, 0, 3), 3, 0, 0);
-                            id_Empleado = predictedLabel;
-                            consultarDatosProfesor();
-
-                            if (!dataInsert.contains(id_Empleado)) {
-                                registrarAsistenciaProfesor(id_Empleado);
-                                dataInsert.add(id_Empleado);
-                            }
-                        }
-                    }
-                }
                 opencv_imgproc.rectangle(frame, capture, color);
 
                 BufferedImage ventana = bufferedImage(frame);
@@ -118,6 +95,52 @@ public class ReconocimientoFacialProfesor {
                 break;
             }
         }
+    }
+
+    /**
+     * * Detecta rostros en una imagen, los reconoce y realiza acciones según el resultado de la predicción.
+     * 
+     * @param rostrosDetectados  RectVector que contiene los rostros detectados en la imagen.
+     * @param recognizer         LBPHFaceRecognizer usado para reconocer rostros.
+     * @return                   RectVector con los rostros detectados.
+     * @throws Exception         Si ocurre algún error durante el proceso.
+    */
+    private RectVector deteccionDeRostros(RectVector rostrosDetectados, LBPHFaceRecognizer recognizer) throws Exception {
+        
+        for (int i = 0; i < rostrosDetectados.size(); i++) {
+            Rect rect = rostrosDetectados.get(i);
+
+            if (capture.contains(new Point(rect.x() + rect.width() / 2, rect.y() + rect.height() / 2))) {
+                color = new Scalar(0, 255, 0, 0);
+
+                opencv_imgproc.rectangle(frame, rect, new Scalar(0, 255, 0, 3), 3, 0, 0);
+                Mat faceROI = new Mat(grayFrame, rect);
+                opencv_imgproc.resize(faceROI, faceROI, new Size(160, 160));
+
+                IntPointer pointer = new IntPointer(1);
+                DoublePointer confidence = new DoublePointer(1);
+                recognizer.predict(faceROI, pointer, confidence);
+                int predictedLabel = pointer.get(0);
+
+                if (predictedLabel == -1) {
+                    opencv_imgproc.rectangle(frame, rect, new Scalar(0, 0, 255, 3), 3, 0, 0);
+                    id_Empleado = 0;
+                    id_ProfesorJLabel.setText("");
+                    name_ProfesorJLabel.setText("Desconocido");
+                } else {
+                    opencv_imgproc.rectangle(frame, rect, new Scalar(0, 255, 0, 3), 3, 0, 0);
+                    id_Empleado = predictedLabel;
+                    consultarDatosProfesor();
+
+                    if (!dataInsert.contains(id_Empleado)) {
+                        registrarAsistenciaProfesor(id_Empleado);
+                        dataInsert.add(id_Empleado);
+                    }
+                }
+            }
+        }
+
+        return rostrosDetectados;
     }
 
     /**
