@@ -1,7 +1,10 @@
 package com.reconocimiento.model.asistencia_alumno;
 
 import java.sql.*;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class AsistenciaAlumnoModel {
     
     private String id_Estudiante;
@@ -10,16 +13,6 @@ public class AsistenciaAlumnoModel {
     private Time hora_salida;
     private boolean asistencia;
 
-    public AsistenciaAlumnoModel() {}
-
-    public AsistenciaAlumnoModel(String id_Estudiante, Date fecha_registro, Time hora_entrada, Time hora_salida, boolean asistencia) {
-
-        this.id_Estudiante = id_Estudiante;
-        this.fecha_registro = fecha_registro;
-        this.hora_entrada = hora_entrada;
-        this.hora_salida = hora_salida;
-        this.asistencia = asistencia;
-    }
     public String getIdEstudiante() {
         return id_Estudiante;
     }

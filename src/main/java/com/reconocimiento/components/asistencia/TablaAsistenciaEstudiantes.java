@@ -17,16 +17,15 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.SQLException;
 
-public class TablaAsistenciaProfesores extends JPanel {
-
+public class TablaAsistenciaEstudiantes extends JPanel {
     private AbstractTable abstractTable;
     private JScrollPane scrollPane;
     private JTextField textField;
     private JLabel title;
 
-    private final ControladorTablaAsistenciaProfesores controlador = new ControladorTablaAsistenciaProfesores();
+    private final ControladorTablaAsistenciaEstudiantes controlador = new ControladorTablaAsistenciaEstudiantes();
 
-    public TablaAsistenciaProfesores() throws SQLException, Exception {
+    public TablaAsistenciaEstudiantes() throws SQLException, Exception {
         this.setLayout(null);
         this.setBackground(new Color(255, 255, 255));
 
@@ -34,7 +33,7 @@ public class TablaAsistenciaProfesores extends JPanel {
         JLabel icono = new JLabel(s);
         icono.setBounds(765, 25, 20, 20);
 
-        title = new JLabel("Gestión de Asistencias de Profesores");
+        title = new JLabel("Gestión de Asistencias de Estudiantes");
         title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
         title.setForeground(new Color(0, 0, 153));
         title.setBounds(25, 25, 350, 20);
@@ -53,7 +52,7 @@ public class TablaAsistenciaProfesores extends JPanel {
         new ReconocimientoFacialProfesor().devolverDatosDelHorario();   
 
 
-        String[] columnas = {"ID del Profesor", "Fecha de Registro", "Hora de Entrada", "Hora de Salida", "Asistencia"};
+        String[] columnas = {"ID del Estudiante", "Fecha de Registro", "Hora de Entrada", "Hora de Salida", "Asistencia"};
         abstractTable = new AbstractTable(controlador.buscadorDeAsistencias(""), columnas);
     
         getDocumentListener();

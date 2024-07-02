@@ -39,7 +39,7 @@ import com.reconocimiento.model.controller.ControladorAsistencias;
 /**
  * @author Eduardo Gómez 
  * */
-public class ReconocimientoFaciallProfesor {
+public class ReconocimientoFacialProfesor {
 
     private final Date fecha = devolverFechaActual();
     private final Time hora = devolverHoraActual();

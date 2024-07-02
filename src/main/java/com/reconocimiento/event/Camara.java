@@ -2,7 +2,7 @@ package com.reconocimiento.event;
 
 import org.bytedeco.opencv.opencv_videoio.VideoCapture;
 
-import com.reconocimiento.global.reconocedor.ReconocimientoFaciallProfesor;
+import com.reconocimiento.global.reconocedor.ReconocimientoFacialProfesor;
 import com.reconocimiento.global.registro.RegistroFacialProfesor;
 
 public class Camara {
@@ -17,7 +17,7 @@ public class Camara {
 
         if (capturaDeVideo.isOpened()) {
             // new RegistroFacialProfesor().registroFacialProfesor();
-            new ReconocimientoFaciallProfesor().reconocimientoFacialEmpleado();
+            new ReconocimientoFacialProfesor().reconocimientoFacialEmpleado();
 
         } else {
             System.err.println("Error al acceder a la camara");
