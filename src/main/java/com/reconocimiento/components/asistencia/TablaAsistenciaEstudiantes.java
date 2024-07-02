@@ -49,7 +49,7 @@ public class TablaAsistenciaEstudiantes extends JPanel {
        
 
         //!Inicializar el método devolverDatosDelHorario() para la inserción de inasistencia
-        new ReconocimientoFacialProfesor().devolverDatosDelHorario();   
+        new ReconocimientoFacialProfesor().validacionDatosDelHorario();
 
 
         String[] columnas = {"ID del Estudiante", "Fecha de Registro", "Hora de Entrada", "Hora de Salida", "Asistencia"};

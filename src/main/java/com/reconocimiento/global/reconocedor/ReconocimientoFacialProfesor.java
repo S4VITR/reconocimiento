@@ -170,7 +170,7 @@ public class ReconocimientoFacialProfesor {
      * 
      * @throws SQLException si ocurre un error durante la ejecución de la consulta SQL.
      */
-    public void devolverDatosDelHorario() {
+    public void validacionDatosDelHorario() throws SQLException {
 
         String sql = "SELECT * FROM horario_profesores WHERE dia_semana = ?";
         ResultSet resultSet;
@@ -190,8 +190,6 @@ public class ReconocimientoFacialProfesor {
                     System.out.println("Se inserto el registro de inasistencia");
                 }
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
     
